@@ -27,5 +27,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::resource('message', 'MessageController');
+// permite acesso das páginas dentro deste grupo abaixo somente se o usuário estiver logado
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('message', 'MessageController');
+});
